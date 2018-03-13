@@ -52,3 +52,29 @@ cfg.Section("").Key("app_mode").String() // production
 ```
 
 The only exception to data overwrite rule is when you use [ShadowLoad]().
+
+### Save your configuration
+
+Finally, it's time to save your configuration to somewhere.
+
+A typical way to save configuration is writing it to a file:
+
+```go
+// ...
+err = cfg.SaveTo("my.ini")
+err = cfg.SaveToIndent("my.ini", "\t")
+```
+
+Another way to save is writing to a `io.Writer` interface:
+
+```go
+// ...
+cfg.WriteTo(writer)
+cfg.WriteToIndent(writer, "\t")
+```
+
+By default, spaces are used to align "=" sign between key and values, to disable that:
+
+```go
+ini.PrettyFormat = false
+```
