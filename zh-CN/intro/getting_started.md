@@ -1,12 +1,12 @@
 ---
-name: Getting Started
+name: 开始使用
 ---
 
-## Getting Started
+## 开始使用
 
-We will go through a very simple example to illustrate how to get started.
+我们将通过一个非常简单的例子来了解如何使用。
 
-First of all, create two files (`my.ini` and `main.go`) under the directory of your choice, let's say we choose `/tmp/ini`.
+首先，我们需要在任意目录创建两个文件（`my.ini` 和 `main.go`），在这里我们选择 `/tmp/ini` 目录。
 
 ```sh
 $ mkdir -p /tmp/ini
@@ -20,7 +20,7 @@ $ tree .
 0 directories, 2 files
 ```
 
-Now, we put some content into the `my.ini` file (_partially take from Grafana_).
+现在，我们编辑 `my.ini` 文件并输入以下内容（_部分内容来自 Grafana_）。
 
 ```ini
 # possible values : production, development
@@ -42,7 +42,7 @@ http_port = 9999
 enforce_domain = true
 ```
 
-Great, let's start writing some code in `main.go` to manipulate this file.
+很好，接下来我们需要编写 `main.go` 文件来操作刚才创建的配置文件。
 
 ```go
 package main
@@ -61,28 +61,28 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Classic read of values, default section can be represented as empty string
+	// 典型读取操作，默认分区可以使用空字符串表示
 	fmt.Println("App Mode:", cfg.Section("").Key("app_mode").String())
 	fmt.Println("Data Path:", cfg.Section("paths").Key("data").String())
 
-	// Let's do some candidate value limitation
+	// 我们可以做一些候选值限制的操作
 	fmt.Println("Server Protocol:",
 		cfg.Section("server").Key("protocol").In("http", []string{"http", "https"}))
-	// Value read that is not in candidates will be discarded and fall back to given default value
+	// 如果读取的值不在候选列表内，则会回退使用提供的默认值
 	fmt.Println("Email Protocol:",
 		cfg.Section("server").Key("protocol").In("smtp", []string{"imap", "smtp"}))
 
-	// Try out auto-type conversion
+	// 试一试自动类型转换
 	fmt.Printf("Port Number: (%[1]T) %[1]d\n", cfg.Section("server").Key("http_port").MustInt(9999))
     fmt.Printf("Enforce Domain: (%[1]T) %[1]v\n", cfg.Section("server").Key("enforce_domain").MustBool(false))
     
-    // Now, make some changes and save it
+    // 差不多了，修改某个值然后进行保存
 	cfg.Section("").Key("app_mode").SetValue("production")
 	cfg.SaveTo("my.ini.local")
 }
 ```
 
-Almost there, let's run this program and check the output.
+运行程序，我们可以看下以下输出：
 
 ```sh
 $ go run main.go
@@ -103,4 +103,4 @@ data = /home/git/grafana
 ...
 ```
 
-Perfect! Though the example is very basic and covered only a small bit of all functionality, but it's a good start.
+完美！这个例子很简单，展示的也只是极其小部分的功能，想要完全掌握还需要多读多看，毕竟学无止境嘛。

@@ -51,7 +51,7 @@ cfg, err := ini.Load("my.ini", "my.ini.local")
 cfg.Section("").Key("app_mode").String() // production
 ```
 
-The only exception to data overwrite rule is when you use [ShadowLoad]().
+The only exception to data overwrite rule is when you use [ShadowLoad](./work_with_keys#same-key-with-multiple-values).
 
 ### Save your configuration
 
