@@ -113,7 +113,30 @@ Dates = 2015-08-07T22:14:22+08:00|2015-08-07T22:14:22+08:00
 places = HangZhou,Boston
 ```
 
-#### Other Notes On Map/Reflect
+### Map with ShadowLoad
+
+If you want to map a section to a struct along with [ShadowLoad](../howto/work_with_keys#same-key-with-multiple-values), then you need to indicate `allowshadow` in the struct tag.
+
+For example, suppose you have the following configuration:
+
+```ini
+[IP]
+value = 192.168.31.201
+value = 192.168.31.211
+value = 192.168.31.221
+```
+
+You should define your struct as follows:
+
+```go
+type IP struct {
+   Value    []string `ini:"value,omitempty,allowshadow"`
+}
+```
+
+In case you don't need the first two tag rules, then you can just have `ini:",,allowshadow"`.
+
+### Other Notes On Map/Reflect
 
 Any embedded struct is treated as a section by default, and there is no automatic parent-child relations in map/reflect feature:
 

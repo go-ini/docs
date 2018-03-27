@@ -111,7 +111,30 @@ Dates = 2015-08-07T22:14:22+08:00|2015-08-07T22:14:22+08:00
 places = HangZhou,Boston
 ```
 
-#### 映射/反射的其它说明
+### 配合 ShadowLoad 进行映射
+
+如果您希望配合 [ShadowLoad](../howto/work_with_keys#same-key-with-multiple-values) 将某个分区映射到结构体，则需要指定 `allowshadow` 标签。
+
+假设您有以下配置文件：
+
+```ini
+[IP]
+value = 192.168.31.201
+value = 192.168.31.211
+value = 192.168.31.221
+```
+
+您应当通过如下方式定义对应的结构体：
+
+```go
+type IP struct {
+   Value    []string `ini:"value,omitempty,allowshadow"`
+}
+```
+
+如果您不需要前两个标签规则，可以使用 `ini:",,allowshadow"` 进行简写。
+
+### 映射/反射的其它说明
 
 任何嵌入的结构都会被默认认作一个不同的分区，并且不会自动产生所谓的父子分区关联：
 
