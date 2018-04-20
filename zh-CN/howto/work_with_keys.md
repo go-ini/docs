@@ -72,7 +72,9 @@ skip-name-resolve
 默认情况下这被认为是缺失值而无法完成解析，但可以通过高级的加载选项对它们进行处理：
 
 ```go
-cfg, err := ini.LoadSources(ini.LoadOptions{AllowBooleanKeys: true}, "my.cnf"))
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    AllowBooleanKeys: true,
+}, "my.cnf")
 ```
 
 这些键的值永远为 `true`，且在保存到文件时也只会输出键名。

@@ -235,3 +235,31 @@ FULL_NAME = github.com/go-ini/%(NAME)s
 cfg.Section("author").Key("GITHUB").String()		// https://github.com/Unknwon
 cfg.Section("package").Key("FULL_NAME").String()	// github.com/go-ini/ini
 ```
+
+
+### Python 多行值
+
+如果您刚将服务从 Python 迁移过来，可能会遇到一些使用旧语法的配置文件，别慌！
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    AllowPythonMultilineValues: true,
+}, []byte(`
+[long]
+long_rsa_private_key = -----BEGIN RSA PRIVATE KEY-----
+   foo
+   bar
+   foobar
+   barfoo
+   -----END RSA PRIVATE KEY-----
+`)
+
+/*
+-----BEGIN RSA PRIVATE KEY-----
+foo
+bar
+foobar
+barfoo 
+-----END RSA PRIVATE KEY-----
+*/
+```

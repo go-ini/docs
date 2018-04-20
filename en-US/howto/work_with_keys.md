@@ -72,7 +72,9 @@ skip-name-resolve
 By default, this is considered as missing value. But if you know you're going to deal with those cases, you can assign advanced load options:
 
 ```go
-cfg, err := ini.LoadSources(ini.LoadOptions{AllowBooleanKeys: true}, "my.cnf"))
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    AllowBooleanKeys: true,
+}, "my.cnf")
 ```
 
 The value of those keys are always `true`, and when you save to a file, it will keep in the same foramt as you read.
