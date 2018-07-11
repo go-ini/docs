@@ -53,6 +53,16 @@ cfg.Section("").Key("app_mode").String() // production
 
 数据覆写只有在一种情况下不会触发，即使用 [ShadowLoad](./work_with_keys#same-key-with-multiple-values) 加载数据源。
 
+### 跳过无法识别的数据行
+
+某些情况下，您的配置文件可能包含非键值对的数据行，解析器默认会报错并终止解析。如果您希望解析器能够忽略并它们完成剩余内容的解析，则可以通过如下方法实现：
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    SkipUnrecognizableLines: true,
+}, "other.ini")
+```
+
 ### 保存配置
 
 终于到了这个时刻，是时候保存一下配置了。
