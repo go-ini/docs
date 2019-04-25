@@ -43,7 +43,7 @@ type Env struct {
 }
 
 func main() {
-	cfg, err := ini.Load([]byte("[env]\nfoo = ${MY_VAR}\n")
+	cfg, err := ini.Load([]byte("[env]\nfoo = ${MY_VAR}\n"))
 	cfg.ValueMapper = os.ExpandEnv
 	// ...
 	env := &Env{}
