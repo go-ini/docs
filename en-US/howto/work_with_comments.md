@@ -19,3 +19,11 @@ cfg, err := ini.LoadSources(ini.LoadOptions{
     IgnoreInlineComment: true,
 }, "app.ini")
 ```
+
+Or require a space before the comment symbol:
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    SpaceBeforeInlineComment: true,
+}, "app.ini")
+```

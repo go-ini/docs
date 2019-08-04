@@ -53,6 +53,16 @@ cfg.Section("").Key("app_mode").String() // production
 
 The only exception to data overwrite rule is when you use [ShadowLoad](./work_with_keys#same-key-with-multiple-values).
 
+### Skip Unrecognizable Lines
+
+In the case that it is possible you do not have control over the input of the configuration and you do not care about lines that do not conform key-value pairs, you can tell parser to simply ignore them and continue parsing on the rest of the configuration:
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    SkipUnrecognizableLines: true,
+}, "other.ini")
+```
+
 ### Save your configuration
 
 Finally, it's time to save your configuration to somewhere.

@@ -19,3 +19,11 @@ cfg, err := ini.LoadSources(ini.LoadOptions{
     IgnoreInlineComment: true,
 }, "app.ini")
 ```
+
+或要求注释符号前必须带有一个空格：
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    SpaceBeforeInlineComment: true,
+}, "app.ini")
+```
