@@ -21,6 +21,16 @@ Package `ini` provides INI file read and write functionality in Go.
 - Manipulate sections, keys and comments with ease.
 - Keep sections and keys in order as you parse and save.
 
+### Installation
+
+The minimum requirement of Go is **1.6**.
+
+```sh
+$ go get gopkg.in/ini.v1
+```
+
+Please add `-u` flag to update in the future.
+
 ### Getting Help
 
 - [API Documentation](https://gowalker.org/gopkg.in/ini.v1)
