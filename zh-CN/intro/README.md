@@ -10,7 +10,7 @@ name: 简介
 
 ### 功能特性
 
-- 支持覆盖加载多个数据源（`[]byte`、文件和 `io.ReadCloser`）
+- 支持覆盖加载多个数据源（file, `[]byte`, `io.Reader` and `io.ReadCloser`）
 - 支持递归读取键值
 - 支持读取父子分区
 - 支持读取自增键名
