@@ -78,3 +78,18 @@ body := cfg.Section("COMMENTS").Body()
 <1><L.Slide#2> This slide has the fuel listed in the wrong units <e.1>
 ------  end  --- */
 ```
+
+### Multiple sections with the same name
+
+By default, a section with the same name as a previous section will override
+the latter. To enable loading of non-unique sections,
+`LoadOptions.AllowNonUniqueSections` must be enabled:
+
+```go
+cfg, err := ini.LoadSources(ini.LoadOptions{
+    AllowNonUniqueSections: true,
+}, src)`[system]
+foo = bar
+[system]
+baz = gazonk`)
+```
